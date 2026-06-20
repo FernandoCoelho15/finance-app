@@ -523,6 +523,7 @@ const dadosCategorias = Object.entries(
     value: valor
   }))
 
+  
   function formatarMes(mes) {
 
   const [ano, numeroMes] = mes.split('-')
@@ -834,53 +835,58 @@ if (carregando) {
     marginTop: 20
   }}
 >
-  <h2 style={{ marginBottom: 15 }}>
-    Planejamento Financeiro
-  </h2>
+<div style={{ color: 'white', marginBottom: 10 }}>
+  <h2>Planejamento Financeiro</h2>
 
-  <div style={{ color: 'white', marginBottom: 10 }}>
-  Teste Meta Gastos Fixos: {metaGastosFixos}
+  <p>
+    Defina como deseja distribuir sua renda mensal.
+    A soma das metas deve totalizar 100%.
+  </p>
 </div>
 
 <div style={{ display: 'grid', gap: 10, marginBottom: 20 }}>
 
+  <label>🏠 Gastos Fixos (%)</label>
   <input
     type="number"
     value={metaGastosFixos}
     onChange={(e) => setMetaGastosFixos(e.target.value)}
-    placeholder="Gastos Fixos %"
     style={{ padding: 8 }}
   />
 
+
+  <label>🎯 Lazer (%)</label>
   <input
     type="number"
     value={metaLazer}
     onChange={(e) => setMetaLazer(e.target.value)}
-    placeholder="Lazer %"
     style={{ padding: 8 }}
   />
 
+
+  <label>📈 Investimentos (%)</label>
   <input
     type="number"
     value={metaInvestimentos}
     onChange={(e) => setMetaInvestimentos(e.target.value)}
-    placeholder="Investimentos %"
     style={{ padding: 8 }}
   />
 
+
+  <label>🚗 Casa e Carro (%)</label>
   <input
     type="number"
     value={metaCasaCarro}
     onChange={(e) => setMetaCasaCarro(e.target.value)}
-    placeholder="Casa/Carro %"
     style={{ padding: 8 }}
   />
 
+
+  <label>🛡 Reserva de Emergência (%)</label>
   <input
     type="number"
     value={metaReserva}
     onChange={(e) => setMetaReserva(e.target.value)}
-    placeholder="Reserva Emergência %"
     style={{ padding: 8 }}
   />
 
@@ -1301,7 +1307,7 @@ if (carregando) {
 >
   <h2>Gastos por Categoria</h2>
 
-  <ResponsiveContainer width="100%" height="100%">
+  <ResponsiveContainer width="100%" height={300}>
     <PieChart>
       <Pie
         data={dadosCategorias}
@@ -1309,7 +1315,7 @@ if (carregando) {
         cy="50%"
         outerRadius={100}
         dataKey="value"
-        label
+        label={({ name, value }) => `${name}: ${value}%`}
       >
         {dadosCategorias.map((entry, index) => (
           <Cell
