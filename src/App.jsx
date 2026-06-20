@@ -32,7 +32,7 @@ function App() {
   const [totalDespesas, setTotalDespesas] = useState(0)
 
   const [salvando, setSalvando] = useState(false)
-  const [carregando, setCarregando] = useState(false)
+  const [carregando, setCarregando] = useState(true)
 
   const [metaGastosFixos, setMetaGastosFixos] = useState(50)
 const [metaLazer, setMetaLazer] = useState(15)
@@ -593,6 +593,13 @@ useEffect(() => {
 
 }, [movimentacoesFiltradas])
 
+if (carregando) {
+  return (
+    <div style={{ padding: 30 }}>
+      <h2>Carregando...</h2>
+    </div>
+  )
+}
 
   // LOGIN SCREEN
  if (!user) {
