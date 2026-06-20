@@ -241,9 +241,10 @@ async function carregarMovimentacoes() {
     if (!user) return
 
     const { data, error } = await supabase
-      .from('movimentacoes')
-      .select('*')
-      .eq('user_id', user.id)
+  .from('movimentacoes')
+  .select('*')
+  .eq('user_id', user.id)
+  .order('created_at', { ascending: false })
 
     if (error) {
       console.log(error)
